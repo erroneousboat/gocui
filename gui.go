@@ -364,7 +364,7 @@ func (g *Gui) MainLoop() error {
 	}
 	termbox.SetInputMode(inputMode)
 
-	if err := g.flush(); err != nil {
+	if err := g.Flush(); err != nil {
 		return err
 	}
 	for {
@@ -381,7 +381,7 @@ func (g *Gui) MainLoop() error {
 		if err := g.consumeevents(); err != nil {
 			return err
 		}
-		if err := g.flush(); err != nil {
+		if err := g.Flush(); err != nil {
 			return err
 		}
 	}
@@ -418,8 +418,8 @@ func (g *Gui) handleEvent(ev *termbox.Event) error {
 	}
 }
 
-// flush updates the gui, re-drawing frames and buffers.
-func (g *Gui) flush() error {
+// Flush updates the gui, re-drawing frames and buffers.
+func (g *Gui) Flush() error {
 	termbox.Clear(termbox.Attribute(g.FgColor), termbox.Attribute(g.BgColor))
 
 	maxX, maxY := termbox.Size()
